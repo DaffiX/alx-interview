@@ -1,10 +1,8 @@
 #!/usr/bin/env python3 
-'''
-    A function that returns a list of list of intergers representing the Pascal Triangle
-'''
+
 def pascal_triangle(n):
     """Create a function def pascal_triangle(n): that returns a list of lists
-    of integers representing the Pascal’s triangle of n
+    of integers representing the Pascal triangle
     """
     res = []
     if n > 0:
