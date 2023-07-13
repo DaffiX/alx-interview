@@ -32,6 +32,22 @@ if __name__ == "__main__":
     print_triangle(pascal_triangle(5))
 ```
 
+```SETUP REQ
+    # Create task file and set write permission.
+touch ./0-pascal_triangle.py
+chmod +x ./0-pascal_triangle.py
+./0-pascal_triangle.py
+
+pycodestyle ./0-pascal_triangle.py
+pep8 ./0-pascal_triangle.py
+
+# Create test file
+touch ./0-main.py
+chmod +x ./0-main.py
+./0-main.py
+
+```
+
 ## Authors
 
 [@selemandaffy](https://www.github.com/daffix)
