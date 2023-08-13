@@ -1,29 +1,26 @@
 #!/usr/bin/node
+
 const request = require('request');
 
-const movieId = process.argv[2]; // Get the movie ID from the command-line argument
+const base_url = 'https://swapi-api.hbtn.io/api';
 
-const base_url = 'https://swapi.dev/api';
-const film_endpoint = `films/${movieId}/`;
+const fetchCharacters = (actors, index) => {
+  if (index === actors.length) return;
 
-// Make a request to get information about the selected movie
-request(`${base_url}/${film_endpoint}`, (error, response, body) => {
-  if (!error && response.statusCode === 200) {
-    const movieData = JSON.parse(body);
-    const characterUrls = movieData.characters;
+  const characterUrl = actors[index];
+  request(characterUrl, (err, res, body) => {
+    if (err) throw err;
 
-    // Fetch character names using the character URLs
-    characterUrls.forEach((characterUrl) => {
-      request(characterUrl, (charError, charResponse, charBody) => {
-        if (!charError && charResponse.statusCode === 200) {
-          const characterData = JSON.parse(charBody);
-          console.log(characterData.name);
-        } else {
-          console.log(`Failed to fetch character data: ${charError}`);
-        }
-      });
-    });
-  } else {
-    console.log(`Failed to fetch movie data: ${error}`);
-  }
+    const characterData = JSON.parse(body);
+    console.log(characterData.name);
+
+    fetchCharacters(actors, index + 1);
+  });
+};
+
+request(`${base_url}/films/${process.argv[2]}`, (err, res, body) => {
+  if (err) throw err;
+
+  const actors = JSON.parse(body).characters;
+  fetchCharacters(actors, 0);
 });
