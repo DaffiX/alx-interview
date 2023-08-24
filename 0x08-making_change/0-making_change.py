@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""Function that takes coins and combine min number to get total 
-"""
+"""Function that takes coins and combine min number to get total """
+
 
 def makeChange(coins, total):
+
     if total <= 0:
         return 0
 
@@ -18,4 +19,3 @@ def makeChange(coins, total):
         return -1
     else:
         return dp[total]
-
