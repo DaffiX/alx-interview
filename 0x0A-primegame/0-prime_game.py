@@ -55,4 +55,3 @@ def primes_in_range(start, end):
     """Returns a list of prime numbers between start and end (inclusive)."""
     primes = [n for n in range(start, end+1) if is_prime(n)]
     return primes
-
